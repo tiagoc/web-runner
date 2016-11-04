@@ -20,8 +20,8 @@ public class Generator : MonoBehaviour {
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             float x, y;
             x = 4 * Mathf.Cos(angle * Mathf.PI / 180);
-            y = 0 + 4 * Mathf.Sin(angle * Mathf.PI / 180);
-            Vector3 position = new Vector3(x, y, 280);
+            y = 4 * Mathf.Sin(angle * Mathf.PI / 180);
+            Vector3 position = new Vector3(x - (float) 2.3, y + (float) 3.93, 280);
 
             Instantiate(obstacle, position, rotation);
         }
