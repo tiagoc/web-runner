@@ -6,17 +6,27 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	private Rigidbody rb;
 
-	void Start ()
-	{
+	void Start (){
 		rb = GetComponent<Rigidbody>();
 	}
 
-	void FixedUpdate ()
-	{
-        float moveHorizontal = 1;
+	void FixedUpdate (){
+        float LeftRight = -1;
 
-		Vector3 movement = new Vector3 (0.0f, 0.0f, moveHorizontal);
+        if (Input.touchCount > 0)
+        {
+            // touch x position is bigger than half of the screen, moving right
+            if (Input.GetTouch(0).position.x > Screen.width / 2)
+                LeftRight = 1;
+            // touch x position is smaller than half of the screen, moving left
+            else if (Input.GetTouch(0).position.x < Screen.width / 2)
+                LeftRight = -1;
+        }
 
-		rb.AddForce (movement * speed);
-	}
+        Vector3 Movement = new Vector3(LeftRight, 0, 0);
+
+        //rb.AddForce(Movement * speed);
+
+        rb.transform.Rotate(0f, 0f, LeftRight * 1f);
+    }
 }
