@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate (){
-        float LeftRight = -1;
+        float LeftRight = 0;
 
         if (Input.touchCount > 0)
         {
