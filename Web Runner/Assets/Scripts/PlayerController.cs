@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate ()
 	{
-		float moveHorizontal = 1;
+        float moveHorizontal = 1;
 
 		Vector3 movement = new Vector3 (0.0f, 0.0f, moveHorizontal);
 
