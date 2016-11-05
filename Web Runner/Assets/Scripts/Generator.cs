@@ -5,11 +5,13 @@ public class Generator : MonoBehaviour {
 
     public GameObject obstacle;
     int i, imax, cubeAmmount;
-	// Use this for initialization
-	void Start () {
+    private float startTime, elapsedTime;
+    // Use this for initialization
+    void Start () {
         i = 0;
-        imax = Random.Range(20 - (int)Time.time / 60, 50);
-        cubeAmmount = Random.Range(1 + (int)Time.time / 60, 2 + (int)Time.time / 20);
+        startTime = Time.time;
+        imax = Random.Range(20, 50);
+        cubeAmmount = Random.Range(1 / 60, 2 / 20);
         PlaceCubes();
 	}
 
@@ -30,12 +32,14 @@ public class Generator : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        elapsedTime = Time.time - startTime;
         i++;
         if (i > imax)
         {
             i = 0;
-            imax = Random.Range(20 - (int)Time.time / 60, 50 - (int)Time.time / 60);
-            cubeAmmount = Random.Range(1 + (int)Time.time / 60, 2 + (int)Time.time / 20);
+            imax = Random.Range(20 - (int)elapsedTime / 60, 50 - (int)elapsedTime / 60);
+            cubeAmmount = Random.Range(1 + (int)elapsedTime / 60, 2 + (int)elapsedTime / 20);
             PlaceCubes();
         }
 	}

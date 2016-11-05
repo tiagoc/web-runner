@@ -10,14 +10,16 @@ public class PlayerController : MonoBehaviour {
     public Text healthText;
     private int countScore;
     private int health;
-    private Rigidbody rb; 
-    public new AudioSource audio;
-    
+    private Rigidbody rb;
+    public AudioClip impact;
+    private new AudioSource audio;
+
     void Start (){
 		rb = GetComponent<Rigidbody>();
         countScore = 0;
         health = 100;
         SetCountText();
+        audio = GetComponent<AudioSource>();
     }
 
 	void FixedUpdate (){
@@ -56,13 +58,13 @@ public class PlayerController : MonoBehaviour {
     {
         if (col.gameObject.tag == "Finish") 
         {
+            audio.PlayOneShot(impact, 0.9F);
+
             int newHighscore = this.countScore;
             int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
             if (newHighscore > oldHighscore)
                 PlayerPrefs.SetInt("highscore", newHighscore);
 
-            audio.Play();
-        
             health -= 25;
             countScore -= 150;
 
