@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
         health = 100;
         SetCountText();
         audio = GetComponent<AudioSource>();
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
 	void FixedUpdate (){
