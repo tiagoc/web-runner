@@ -61,5 +61,13 @@ public class PlayerController : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-    
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("main_menu");
+        }
+    }
+
 }
