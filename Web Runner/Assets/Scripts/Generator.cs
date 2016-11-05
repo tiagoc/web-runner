@@ -8,8 +8,8 @@ public class Generator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         i = 0;
-        imax = Random.Range(10, 30);
-        cubeAmmount = Random.Range(1, 5);
+        imax = Random.Range(5, 15);
+        cubeAmmount = Random.Range(1, 2 + (int)Time.time / 20);
         PlaceCubes();
 	}
 
@@ -34,8 +34,8 @@ public class Generator : MonoBehaviour {
         if (i > imax)
         {
             i = 0;
-            imax = Random.Range(10, 30);
-            cubeAmmount = Random.Range(1, 5);
+            imax = Random.Range(5, 15);
+            cubeAmmount = Random.Range(1 + (int)Time.time / 60, 2 + (int)Time.time / 20);
             PlaceCubes();
         }
 	}
