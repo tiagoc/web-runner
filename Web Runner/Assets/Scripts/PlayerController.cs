@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
                 LeftRight = speed;
         }
 
-        LeftRight -= Input.acceleration.x * 4;
+        LeftRight -= Input.acceleration.x * 6;
 
         //Vector3 Movement = new Vector3(LeftRight, 0, 0);
         //rb.AddForce(Movement * speed);
