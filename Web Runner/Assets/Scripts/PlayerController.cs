@@ -7,13 +7,16 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed;
     public Text scoreText;
-	private Rigidbody rb;
+    public Text healthText;
     private int countScore;
+    private int health;
+    private Rigidbody rb; 
     public new AudioSource audio;
-
+    
     void Start (){
 		rb = GetComponent<Rigidbody>();
         countScore = 0;
+        health = 100;
         SetCountText();
     }
 
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour {
     void SetCountText()
     {
         scoreText.text = "Score: " + countScore.ToString();
+        healthText.text = "HP: " + health.ToString();
     }
 
     void OnTriggerEnter(Collider col)
@@ -56,9 +60,14 @@ public class PlayerController : MonoBehaviour {
             int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
             if (newHighscore > oldHighscore)
                 PlayerPrefs.SetInt("highscore", newHighscore);
+
             audio.Play();
-            audio.Play(44100);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+            health -= 25;
+            countScore -= 150;
+
+            if (health <= 0)
+                SceneManager.LoadScene("main_menu");
         }
     }
 
