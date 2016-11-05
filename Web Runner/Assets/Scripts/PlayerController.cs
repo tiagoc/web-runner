@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour {
 
         //rb.AddForce(Movement * speed);
 
-        rb.transform.Rotate(0f, 0f, 0f);
+        rb.transform.Translate((float) 2.3, (float) 3.93, 0);
+        rb.transform.Rotate(0f, 0f, LeftRight);
+
+        rb.transform.Translate(- (float) 2.3, - (float) 3.93, 0);
     }
 }

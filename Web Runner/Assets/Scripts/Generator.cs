@@ -21,7 +21,7 @@ public class Generator : MonoBehaviour {
             float x, y;
             x = 4 * Mathf.Cos(angle * Mathf.PI / 180);
             y = 4 * Mathf.Sin(angle * Mathf.PI / 180);
-            Vector3 position = new Vector3(x - (float) 2.3, y + (float) 3.93, 280);
+            Vector3 position = new Vector3(x - (float) 2.3, y, 280);
 
             Instantiate(obstacle, position, rotation);
         }
