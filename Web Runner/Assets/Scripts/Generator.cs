@@ -35,7 +35,7 @@ public class Generator : MonoBehaviour {
         {
             i = 0;
             imax = Random.Range(10, 30);
-            cubeAmmount = Random.Range(0, 5);
+            cubeAmmount = Random.Range(1, 5);
             PlaceCubes();
         }
 	}
