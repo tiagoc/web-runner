@@ -52,17 +52,14 @@ public class PlayerController : MonoBehaviour {
     {
         if (col.gameObject.tag == "Finish") 
         {
-            StoreHighscore(countScore);
+            int newHighscore = this.countScore;
+            int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
+            if (newHighscore > oldHighscore)
+                PlayerPrefs.SetInt("highscore", newHighscore);
             audio.Play();
             audio.Play(44100);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-
-    void StoreHighscore(int newHighscore)
-    {
-        int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
-        if (newHighscore > oldHighscore)
-            PlayerPrefs.SetInt("highscore", newHighscore);
-    }
+    
 }

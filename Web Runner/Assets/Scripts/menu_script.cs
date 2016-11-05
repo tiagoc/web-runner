@@ -13,7 +13,7 @@ public class menu_script : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        
+        SetCountText();
         startText = startText.GetComponent<Button>();
         exitText = exitText.GetComponent<Button>();
         tutorialText = tutorialText.GetComponent<Button>();
@@ -33,11 +33,12 @@ public class menu_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        SetCountText();
+    }
 
     void SetCountText()
     {
-        highscoreText.text = "High Score: " + PlayerPrefs.GetInt("highscore", 0).ToString();
+        int highscore = PlayerPrefs.GetInt("highscore", 0);
+        highscoreText.text = "High Score: " + highscore.ToString();
     }
 }
