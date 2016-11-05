@@ -4,10 +4,11 @@ using System.Collections;
 public class Generator : MonoBehaviour {
 
     public GameObject obstacle;
-    int i, cubeAmmount;
+    int i, imax, cubeAmmount;
 	// Use this for initialization
 	void Start () {
         i = 0;
+        imax = Random.Range(10, 30);
         cubeAmmount = Random.Range(1, 5);
         PlaceCubes();
 	}
@@ -30,9 +31,10 @@ public class Generator : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         i++;
-        if (i > 30)
+        if (i > imax)
         {
             i = 0;
+            imax = Random.Range(10, 30);
             cubeAmmount = Random.Range(0, 5);
             PlaceCubes();
         }
