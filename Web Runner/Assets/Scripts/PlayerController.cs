@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
+    public Text scoreText;
 	private Rigidbody rb;
+    private int countScore;
 
 	void Start (){
 		rb = GetComponent<Rigidbody>();
-	}
+        countScore = 0;
+        SetCountText();
+    }
 
 	void FixedUpdate (){
         float LeftRight = 0;
@@ -31,5 +36,13 @@ public class PlayerController : MonoBehaviour {
         rb.transform.Translate((float) 2.3, (float) 3.93, 0);
         rb.transform.Rotate(0f, 0f, LeftRight);
         rb.transform.Translate(- (float) 2.3, - (float) 3.93, 0);
+
+        countScore++;
+        SetCountText();
+    }
+
+    void SetCountText()
+    {
+        scoreText.text = "Score: " + countScore.ToString();
     }
 }
