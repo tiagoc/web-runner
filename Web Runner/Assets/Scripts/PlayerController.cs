@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour {
         {
             // touch x position is bigger than half of the screen, moving right
             if (Input.GetTouch(0).position.x > Screen.width / 2)
-                LeftRight = 1;
+                LeftRight = -speed;
             // touch x position is smaller than half of the screen, moving left
             else if (Input.GetTouch(0).position.x < Screen.width / 2)
-                LeftRight = -1;
+                LeftRight = speed;
         }
 
         Vector3 Movement = new Vector3(LeftRight, 0, 0);
