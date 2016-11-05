@@ -5,13 +5,9 @@ public class MatColorProgressiveChange : MonoBehaviour
 {
 
     public Color[] colors;
-
     public int currentIndex = 0;
     private int nextIndex;
-
     public float changeColourTime = 2.0f;
-
-    private float lastChange = 0.0f;
     private float timer = 0.0f;
 
     void Start()
