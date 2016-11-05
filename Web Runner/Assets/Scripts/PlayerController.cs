@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Finish") 
+        if (col.gameObject.tag == "Finish")
         {
             audio.PlayOneShot(impact, 0.9F);
 
@@ -70,6 +70,11 @@ public class PlayerController : MonoBehaviour {
 
             if (health <= 0)
                 SceneManager.LoadScene("main_menu");
+        }
+        else if (col.gameObject.tag == "Respawn")
+        {
+            health += 15;
+            countScore += 42;
         }
     }
 
