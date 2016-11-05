@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -8,8 +9,9 @@ public class PlayerController : MonoBehaviour {
     public Text scoreText;
 	private Rigidbody rb;
     private int countScore;
+    public new AudioSource audio;
 
-	void Start (){
+    void Start (){
 		rb = GetComponent<Rigidbody>();
         countScore = 0;
         SetCountText();
@@ -44,5 +46,15 @@ public class PlayerController : MonoBehaviour {
     void SetCountText()
     {
         scoreText.text = "Score: " + countScore.ToString();
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Finish") 
+        {
+            audio.Play();
+            audio.Play(44100);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
