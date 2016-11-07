@@ -18,21 +18,22 @@ public class Generator : MonoBehaviour {
 
     void PlaceCubes()
     {
-        for (int i = 0; i < cubeAmmount; i++)
-        {
-            float angle = Random.Range(0, 360);
-            Quaternion rotation;
-            if (mult == -1)
-                rotation = Quaternion.Euler(180-angle,90,0);
-            else
-                rotation = Quaternion.Euler(0, 0, angle);
-            float x, y;
-            x = radius * Mathf.Cos(angle * Mathf.PI / 180);
-            y = radius * Mathf.Sin(angle * Mathf.PI / 180);
-            Vector3 position = new Vector3(x - (float) 2.3, y, 280);
+        if (mult == -1 || (PlayerController.enableObstacles && mult == 1))
+            for (int i = 0; i < cubeAmmount; i++)
+            {
+                float angle = Random.Range(0, 360);
+                Quaternion rotation;
+                if (mult == -1)
+                    rotation = Quaternion.Euler(180-angle,90,0);
+                else
+                    rotation = Quaternion.Euler(0, 0, angle);
+                float x, y;
+                x = radius * Mathf.Cos(angle * Mathf.PI / 180);
+                y = radius * Mathf.Sin(angle * Mathf.PI / 180);
+                Vector3 position = new Vector3(x - (float) 2.3, y, 280);
 
-            Instantiate(obstacle, position, rotation);
-        }
+                Instantiate(obstacle, position, rotation);
+            }
     }
 
     // Update is called once per frame
@@ -49,5 +50,8 @@ public class Generator : MonoBehaviour {
                 cubeAmmount = 1;
             PlaceCubes();
         }
-	}
+        if (Time.time - PlayerController.powerUpTime >= 20)
+            PlayerController.enableObstacles = true;
+
+    }
 }

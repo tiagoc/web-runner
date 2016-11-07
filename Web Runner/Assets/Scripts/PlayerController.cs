@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
     public Text scoreText;
     public Text healthText;
+    public static bool enableObstacles = true;
+    public static float powerUpTime;
     private int countScore;
     private int health;
     private Rigidbody rb;
@@ -57,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Finish")
+        if (col.gameObject.layer == 9)
         {
             audio.PlayOneShot(impact, 0.9F);
 
@@ -66,16 +68,21 @@ public class PlayerController : MonoBehaviour {
             if (newHighscore > oldHighscore)
                 PlayerPrefs.SetInt("highscore", newHighscore);
 
-            health -= 25;
+            //health -= 25;
             countScore -= 150;
 
             if (health <= 0)
                 SceneManager.LoadScene("main_menu");
         }
-        else if (col.gameObject.tag == "Respawn")
+        else if (col.gameObject.layer == 10)
         {
             health += 15;
             countScore += 42;
+        }
+        else if (col.gameObject.layer == 11)
+        {
+            enableObstacles = false;
+            powerUpTime = Time.time;
         }
     }
 
