@@ -44,16 +44,19 @@ public class PlayerController : MonoBehaviour {
         //rb.AddForce(Movement * speed);
 
         rb.transform.Translate((float) 2.3, (float) 3.93, 0);
+        CubeMotion.fallingSpeed = - (12 + Input.acceleration.y * 12);
+        if (CubeMotion.fallingSpeed >= 2)
+            CubeMotion.fallingSpeed = -2;
         rb.transform.Rotate(0f, 0f, LeftRight);
         rb.transform.Translate(- (float) 2.3, - (float) 3.93, 0);
 
-        countScore++;
+        countScore+=-(int)CubeMotion.fallingSpeed;
         SetCountText();
     }
 
     void SetCountText()
     {
-        scoreText.text = "Score: " + countScore.ToString();
+        scoreText.text = "Score: " + CubeMotion.fallingSpeed.ToString();
         healthText.text = "HP: " + health.ToString();
     }
 
