@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
             if (newHighscore > oldHighscore)
                 PlayerPrefs.SetInt("highscore", newHighscore);
 
-            //health -= 25;
+            health -= 25;
             countScore -= 150;
 
             if (health <= 0)

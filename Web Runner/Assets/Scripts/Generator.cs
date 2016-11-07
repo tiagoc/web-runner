@@ -4,7 +4,9 @@ using System.Collections;
 public class Generator : MonoBehaviour {
 
     public GameObject obstacle;
-    public int distMin, distMax, densMin, densMax, mult, radius;
+    public int distMin, distMax, densMin, densMax, mult;
+    public float radius;
+    public Material[] materials;
     int i, imax, cubeAmmount;
     private float startTime, elapsedTime;
     // Use this for initialization
@@ -23,8 +25,13 @@ public class Generator : MonoBehaviour {
             {
                 float angle = Random.Range(0, 360);
                 Quaternion rotation;
-                if (mult == -1)
-                    rotation = Quaternion.Euler(180-angle,90,0);
+                if (obstacle.layer == 10)
+                    rotation = Quaternion.Euler(180 - angle, 90, 0);
+                else if (obstacle.layer == 11)
+                {
+                    rotation = Quaternion.Euler(90, 0, 0);
+                    rotation *= Quaternion.Euler(0, angle - 90, 0);
+                }
                 else
                     rotation = Quaternion.Euler(0, 0, angle);
                 float x, y;
@@ -32,6 +39,7 @@ public class Generator : MonoBehaviour {
                 y = radius * Mathf.Sin(angle * Mathf.PI / 180);
                 Vector3 position = new Vector3(x - (float) 2.3, y, 280);
 
+                obstacle.GetComponent<Renderer>().sharedMaterial = materials[Random.Range(0, materials.Length)];
                 Instantiate(obstacle, position, rotation);
             }
     }
@@ -50,7 +58,7 @@ public class Generator : MonoBehaviour {
                 cubeAmmount = 1;
             PlaceCubes();
         }
-        if (Time.time - PlayerController.powerUpTime >= 20)
+        if (Time.time - PlayerController.powerUpTime >= 10)
             PlayerController.enableObstacles = true;
 
     }
